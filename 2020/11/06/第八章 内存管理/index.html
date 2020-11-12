@@ -24,15 +24,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="第八章 内存管理8.1背景8.1.1基本硬件高速缓存 将信息复制到更快的存储系统访问时，请首先检查缓存，如果在：直接使用不在：从上层存储系统获取，并将副本保留在缓存中使用缓存寄存器为主存储器提供高速缓存指令缓存和数据缓存主内存可以视为辅助存储的快速缓存 必须将程序（从磁盘）带入内存并放置在进程中才能运行主存储器和寄存器仅是存储CPU可以直接访问一个CPU时钟（或更少）中的Registeracces">
+  <meta name="description" content="第八章 内存管理8.1背景8.1.1基本硬件 高速缓存 将信息复制到更快的存储系统访问时，请首先检查缓存，如果在：直接使用不在：从上层存储系统获取，并将副本保留在缓存中使用缓存寄存器为主存储器提供高速缓存指令缓存和数据缓存主内存可以视为辅助存储的快速缓存 必须将程序（从磁盘）带入内存并放置在进程中才能运行主存储器和寄存器仅是存储CPU可以直接访问一个CPU时钟（或更少）中的Registeracce">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第八章 内存管理">
 <meta property="og:url" content="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="blog">
-<meta property="og:description" content="第八章 内存管理8.1背景8.1.1基本硬件高速缓存 将信息复制到更快的存储系统访问时，请首先检查缓存，如果在：直接使用不在：从上层存储系统获取，并将副本保留在缓存中使用缓存寄存器为主存储器提供高速缓存指令缓存和数据缓存主内存可以视为辅助存储的快速缓存 必须将程序（从磁盘）带入内存并放置在进程中才能运行主存储器和寄存器仅是存储CPU可以直接访问一个CPU时钟（或更少）中的Registeracces">
+<meta property="og:description" content="第八章 内存管理8.1背景8.1.1基本硬件 高速缓存 将信息复制到更快的存储系统访问时，请首先检查缓存，如果在：直接使用不在：从上层存储系统获取，并将副本保留在缓存中使用缓存寄存器为主存储器提供高速缓存指令缓存和数据缓存主内存可以视为辅助存储的快速缓存 必须将程序（从磁盘）带入内存并放置在进程中才能运行主存储器和寄存器仅是存储CPU可以直接访问一个CPU时钟（或更少）中的Registeracce">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-06T03:12:42.000Z">
-<meta property="article:modified_time" content="2020-11-06T09:30:51.181Z">
+<meta property="article:modified_time" content="2020-11-12T15:17:26.537Z">
 <meta property="article:author" content="eric-scarlet">
 <meta name="twitter:card" content="summary">
 
@@ -206,7 +206,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">第八章 内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">8.1背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-1%E5%9F%BA%E6%9C%AC%E7%A1%AC%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">8.1.1基本硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-2%E5%9C%B0%E5%9D%80%E7%BB%91%E5%AE%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">8.1.2地址绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-3%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E4%B8%8E%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="nav-number">1.1.3.</span> <span class="nav-text">8.1.3逻辑地址空间与物理地址空间</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">第八章 内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">8.1背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-1%E5%9F%BA%E6%9C%AC%E7%A1%AC%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">8.1.1基本硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-2%E5%9C%B0%E5%9D%80%E7%BB%91%E5%AE%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">8.1.2地址绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-3%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E4%B8%8E%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="nav-number">1.1.3.</span> <span class="nav-text">8.1.3逻辑地址空间与物理地址空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-4%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD"><span class="nav-number">1.1.4.</span> <span class="nav-text">8.1.4动态加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-5%E5%8A%A8%E6%80%81%E8%81%94%E5%BB%BA%E4%B8%8E%E5%85%B1%E4%BA%AB%E5%BA%93"><span class="nav-number">1.1.5.</span> <span class="nav-text">8.1.5动态联建与共享库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2%E4%BA%A4%E6%8D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">8.2交换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-1%E6%A0%87%E5%87%86%E4%BA%A4%E6%8D%A2"><span class="nav-number">1.2.1.</span> <span class="nav-text">8.2.1标准交换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3%E8%BF%9E%E7%BB%AD%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-number">1.3.</span> <span class="nav-text">8.3连续内存分配</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -293,10 +293,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-06 11:12:42 / 修改时间：17:30:51" itemprop="dateCreated datePublished" datetime="2020-11-06T11:12:42+08:00">2020-11-06</time>
+      <time title="创建时间：2020-11-06 11:12:42" itemprop="dateCreated datePublished" datetime="2020-11-06T11:12:42+08:00">2020-11-06</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-12 23:17:26" itemprop="dateModified" datetime="2020-11-12T23:17:26+08:00">2020-11-12</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -317,25 +323,190 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="第八章-内存管理"><a href="#第八章-内存管理" class="headerlink" title="第八章 内存管理"></a>第八章 内存管理</h1><h2 id="8-1背景"><a href="#8-1背景" class="headerlink" title="8.1背景"></a>8.1背景</h2><h3 id="8-1-1基本硬件"><a href="#8-1-1基本硬件" class="headerlink" title="8.1.1基本硬件"></a>8.1.1基本硬件</h3><p>高速缓存</p>
+        <h1 id="第八章-内存管理"><a href="#第八章-内存管理" class="headerlink" title="第八章 内存管理"></a>第八章 内存管理</h1><h2 id="8-1背景"><a href="#8-1背景" class="headerlink" title="8.1背景"></a>8.1背景</h2><h3 id="8-1-1基本硬件"><a href="#8-1-1基本硬件" class="headerlink" title="8.1.1基本硬件"></a>8.1.1基本硬件</h3><ul>
+<li><p>高速缓存</p>
 <p>将信息复制到更快的存储系统<br>访问时，请首先检查缓存，<br>如果在：直接使用<br>不在：从上层存储系统获取，并将副本保留在缓存中<br>使用缓存<br>寄存器为主存储器提供高速缓存<br>指令缓存和数据缓存<br>主内存可以视为辅助存储的快速缓存</p>
 <p>必须将程序（从磁盘）带入内存并放置在进程中才能运行<br>主存储器和寄存器仅是存储CPU可以直接访问<br>一个CPU时钟（或更少）中的Registeraccess<br>主内存可能需要很多周期（几个CPU时钟）<br>缓存在主内存和CPU寄存器之间进行<br>内存的保护需要保证正确的操作</p>
-<p>内存保护<br>基地址寄存器和界限地址寄存器定义了逻辑地址空间<br>√基地址寄存器＋界限地址寄存器<br>√外部存储器受到保护<br>√操作系统可以不受限制地访问显示器和用户的内存<br>√只有操作系统可以通过特殊的特权指令，才能加载基地址寄存器和界限地址寄存器。</p>
-<h3 id="8-1-2地址绑定"><a href="#8-1-2地址绑定" class="headerlink" title="8.1.2地址绑定"></a>8.1.2地址绑定</h3><p>将指令和数据绑定到内存<br>符号地址到可重定位地址<br>可重定位地址到绝对地址<br>指令和数据到内存地址的地址绑定可以分为三个不同的阶段</p>
-<p>通常，指令和数据绑定到存储器地址可在沿途的任何一步进行：</p>
-<p>编译时：若编译时就已经知道程序的驻留地址，就可以生成绝对代码</p>
-<p>如果内存位置被称为先验，则可以生成绝对代码（absolute code）；<br>如果起始位置更改，则必须重新编译代码；<br>示例：MS-DOS .COM格式程序</p>
-<p>加载时：（可重定位代码）<br>如果在编译时不知道内存位置，则必须生成可重定位代码（可重定位代码）</p>
-<p>执行时：</p>
+</li>
+<li><p>内存保护<br>基地址寄存器和界限地址寄存器定义了逻辑地址空间</p>
+<ul>
+<li>基地址寄存器＋界限地址寄存器</li>
+<li>外部存储器受到保护</li>
+<li>操作系统可以不受限制地访问显示器和用户的内存</li>
+<li>只有操作系统可以通过特殊的特权指令，才能加载基地址寄存器和界限地址寄存器。</li>
+</ul>
+</li>
+</ul>
+<h3 id="8-1-2地址绑定"><a href="#8-1-2地址绑定" class="headerlink" title="8.1.2地址绑定"></a>8.1.2地址绑定</h3><ul>
+<li><p>将指令和数据绑定到内存</p>
+</li>
+<li><p>符号地址到可重定位地址</p>
+</li>
+<li><p>可重定位地址到绝对地址</p>
+</li>
+<li><p>指令和数据到内存地址的地址绑定可以分为三个不同的阶段</p>
+</li>
+<li><p>通常，指令和数据绑定到存储器地址可在沿途的任何一步进行：</p>
+</li>
+<li><p>编译时：若编译时就已经知道程序的驻留地址，就可以生成绝对代码</p>
+</li>
+<li><p>如果内存位置被称为先验，则可以生成绝对代码（absolute code）；<br>如果起始位置更改，则必须重新编译代码；<br>示例：MS-DOS .COM格式程序</p>
+</li>
+<li><p>加载时：（可重定位代码）<br>如果在编译时不知道内存位置，则必须生成可重定位代码（可重定位代码）</p>
+</li>
+<li><p>执行时：</p>
 <p>若进程可以在执行时从一个内存段转移到另一个内存段，那么绑定应当延迟到执行时才进行，采用这种方案需要特定硬件，大多数通用计算机操作系统采用该方法。</p>
-<p>用户程序的多步骤处理：</p>
-<p>![image-20201106165942906](第八章 内存管理/image-20201106165942906.png)</p>
-<h3 id="8-1-3逻辑地址空间与物理地址空间"><a href="#8-1-3逻辑地址空间与物理地址空间" class="headerlink" title="8.1.3逻辑地址空间与物理地址空间"></a>8.1.3逻辑地址空间与物理地址空间</h3><p>CPU生成的地址通常称为逻辑地址，而内存单元看到的地址（即加载到内存地址寄存器的地址）通常称为物理地址。</p>
-<p>编译时和加载时的地址绑定方法生成相同的逻辑地址和物理地址。但是执行时的地址绑定方案生成不同的逻辑地址和物理地址，在该情况下通常称逻辑地址为虚拟地址。由程序生成的所有逻辑地址的集合称为逻辑地址空间，这些逻辑地址对应的所有物理地址的集合称为物理地址空间。</p>
-<p>内存管理单元（MMU）<br>将虚拟地址映射到物理地址的硬件设备<br>在MMU方案中，重定位寄存器中的值被添加到用户进程当时生成的每个地址中，然后将其发送到内存中。<br>用户程序处理逻辑地址； 它从来没有看到真正的物理地址。</p>
-<p>使用重定位寄存器的动态重定位：</p>
-<p>![image-20201106171429922](第八章 内存管理/image-20201106171429922.png)</p>
-
+</li>
+<li><p>用户程序的多步骤处理：</p>
+</li>
+</ul>
+<p>![image-20201112202116682](第八章 内存管理/image-20201112202116682.png)</p>
+<h3 id="8-1-3逻辑地址空间与物理地址空间"><a href="#8-1-3逻辑地址空间与物理地址空间" class="headerlink" title="8.1.3逻辑地址空间与物理地址空间"></a>8.1.3逻辑地址空间与物理地址空间</h3><ul>
+<li><p>CPU生成的地址通常称为逻辑地址，而内存单元看到的地址（即加载到内存地址寄存器的地址）通常称为物理地址。</p>
+</li>
+<li><p>编译时和加载时的地址绑定方法生成相同的逻辑地址和物理地址。但是执行时的地址绑定方案生成不同的逻辑地址和物理地址，在该情况下通常称逻辑地址为虚拟地址。由程序生成的所有逻辑地址的集合称为逻辑地址空间，这些逻辑地址对应的所有物理地址的集合称为物理地址空间。</p>
+</li>
+<li><p>内存管理单元（MMU）<br>将虚拟地址映射到物理地址的硬件设备<br>在MMU方案中，重定位寄存器中的值被添加到用户进程当时生成的每个地址中，然后将其发送到内存中。<br>用户程序处理逻辑地址； 它从来没有看到真正的物理地址。</p>
+</li>
+<li><p>使用重定位寄存器的动态重定位：</p>
+</li>
+</ul>
+<p>![image-20201112202128762](第八章 内存管理/image-20201112202128762.png)</p>
+<h3 id="8-1-4动态加载"><a href="#8-1-4动态加载" class="headerlink" title="8.1.4动态加载"></a>8.1.4动态加载</h3><p>加载的三种方式：</p>
+<ul>
+<li>绝对加载方式</li>
+<li>可重定位装入方式</li>
+<li>动态运行时装入方式</li>
+</ul>
+<p>绝对加载方式</p>
+<p>编译：</p>
+<ul>
+<li>具有绝对地址的绝对代码<br>正在加载：</li>
+<li>必须加载到指定地址</li>
+<li>加载地址=绝对地址</li>
+<li>执行：</li>
+<li>逻辑地址=绝对地址</li>
+<li>适用于简单的批处理系统（单道系统）</li>
+</ul>
+<p>可重定位装入方式</p>
+<ul>
+<li>通常，在编译时无法知道加载地址，而只能在加载时确定。<br>编译：</li>
+<li>code带有相对地址的可重定位代码</li>
+<li>正在加载：</li>
+<li>执行：根据加载地址，将文件中的相对地址修改为内存中的绝对地址</li>
+<li>这称为重定位（relocation）</li>
+<li>静态静态重定位：</li>
+<li>地址绑定在加载时完成一次，然后将不会更改</li>
+<li>逻辑地址=绝对地址</li>
+<li>适用于多道系统</li>
+</ul>
+<p>动态运行时装入方式</p>
+<ul>
+<li><p>基于参照性原则</p>
+</li>
+<li><p>将主程序加载到内存中并执行</p>
+</li>
+<li><p>例程不被加载，直到被调用</p>
+</li>
+<li><p>执行时加载：需要可重定位的链接加载器</p>
+</li>
+<li><p>loading加载前：可重定位代码</p>
+</li>
+<li><p>通话时而不是：</p>
+<p>加载所需的例程，更新程序的地址表</p>
+<p>并将控制权传递给新加载的例程</p>
+</li>
+<li><p>优点：<br>更好的内存空间利用率；<br>未使用的例程永远不会加载。</p>
+</li>
+<li><p>当需要大量代码来处理异常（例如错误进程）时很有用</p>
+</li>
+<li><p>不需要操作系统的特殊支持</p>
+</li>
+<li><p>用户责任是设计他们的程序利用这种方法的优点</p>
+</li>
+<li><p>操作系统可以通过实现动态加载的程序库来帮助程序员</p>
+</li>
+</ul>
+<h3 id="8-1-5动态联建与共享库"><a href="#8-1-5动态联建与共享库" class="headerlink" title="8.1.5动态联建与共享库"></a>8.1.5动态联建与共享库</h3><p>链接：</p>
+<p>![image-20201112203018298](第八章 内存管理/image-20201112203018298.png)</p>
+<p>根据链接的时间可以分为：</p>
+<ul>
+<li>静态链接方式</li>
+<li>装入时动态链接</li>
+<li>运行时动态链接</li>
+</ul>
+<p>静态链接方式</p>
+<ul>
+<li>加载之前，所有对象模块和所需的库都链接到一个可加载的二进制程序映像中。<br>在对象模块和（静态）库中：相对地址<br>存在外部呼叫或对外部符号的引用</li>
+<li>（函数或变量）：<br>对象模块←→对象模块； 对象模块→库</li>
+<li>连结时<br>相对地址被修改：<br>多个相对地址空间→一个相对地址空间<br>外部调用和引用是定界的</li>
+<li>这种功能通常用于系统库，如语言的子程序库。没有这种功能，系统内所有的程序都需要一份语言库的副本，这种要求浪费了磁盘空间和内存空间。</li>
+<li>坏处：<br>系统上的每个程序都必须包含必需的副本<br>库（或至少必需的例程）<br>例如语言库</li>
+</ul>
+<p>装入时动态链接</p>
+<ul>
+<li><p>加载时链接：</p>
+</li>
+<li><p>外部调用和引用是定界的<br>根据外部调用和引用，加载<br>程序找到所需的对象模块和库，并<br>将它们加载到内存中</p>
+</li>
+<li><p>相对地址被修改：<br>多个相对地址空间→一个相对地址空间</p>
+</li>
+<li><p>优点：<br>易于修改和更新对象模块和库<br>轻松共享对象模块和库</p>
+</li>
+</ul>
+<p>运行时动态链接</p>
+<ul>
+<li>每次执行时，一个程序可能不同<ul>
+<li>链接推迟到执行时间</li>
+</ul>
+</li>
+<li>链接时：<ul>
+<li>每个库例程的映像中都包含一个stubis<br>参考资料</li>
+<li>stubis是一小段代码，用于查找<br>适当的内存驻留库例程</li>
+</ul>
+</li>
+<li>执行期间：<ul>
+<li>存根将其自身替换为例程的地址，并且<br>执行例程</li>
+<li>操作系统需要检查例程是否在进程的内存地址中<br>动态链接对于库-共享库特别有用<br>优点：加载时间短，存储空间少</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-2交换"><a href="#8-2交换" class="headerlink" title="8.2交换"></a>8.2交换</h2><ul>
+<li>进程必须在内存中以便执行。不过，内存可以暂时从<strong>内存</strong>交换到<strong>备份存储</strong>，当再次执行时再调回到内存中。交换有可能让所有进程的总的物理地址空间超过真实系统的物理地址空间，从而增加了系统的<strong>多道程序程度</strong>。</li>
+</ul>
+<p>![image-20201112230619494](第八章 内存管理/image-20201112230619494.png)</p>
+<h3 id="8-2-1标准交换"><a href="#8-2-1标准交换" class="headerlink" title="8.2.1标准交换"></a>8.2.1标准交换</h3><ul>
+<li><p>交换要求：<br>对换空间<br> 换出（或滚出）<br> 换入（或滚入）</p>
+</li>
+<li><p>备份存储：足够大的快速磁盘，可以容纳所有用户的所有内存映像副本； 必须提供对这些内存映像的直接访问</p>
+<ul>
+<li><p>为了加快速度，请考虑连续分配，并忽略碎片问题</p>
+</li>
+<li><p>需要提供数据结构来管理空闲磁盘块</p>
+<ul>
+<li>类似于动态分区分配</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>进程换出</p>
+<ul>
+<li>步骤1：选择要换出的流程</li>
+<li>RR调度：<br>时间片到期时换出<br>基于优先级的调度：推出，推出<br>较低优先级的进程被换出，因此可以加载和执行较高优先级的进程。</li>
+<li>步骤2：换出<br>确定要换出的内容<br>（1）不可共享的代码段和数据段<br>（2）可共享的代码和数据段：counter（计数器）<br>  在后备存储上分配空间，换出并修改相关数据结构</li>
+</ul>
+</li>
+<li><p>进程换入</p>
+<ul>
+<li><p>步骤1：选择要交换的进程</p>
+<p>具有静态就绪状态（静止就绪状态）的进程+其他<br>原则<br>-就绪队列：后备存储或存储中的所有就绪进程<br>记忆</p>
+</li>
+<li><p>步骤2：分配内存空间并交换<br>-如果有可用的内存…<br>-否则，通过换出其他进程来释放内存<br>交换时间的主要部分是传输时间； 总传输时间与所交换的内存量成正比<br>在许多系统（例如UNIX，Linux和Windows）上都可以找到修改后的交换版本</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-3连续内存分配"><a href="#8-3连续内存分配" class="headerlink" title="8.3连续内存分配"></a>8.3连续内存分配</h2>
     </div>
 
     
