@@ -27,22 +27,17 @@
   <meta name="description" content="第八章 内存管理8.1背景8.1.1基本硬件 高速缓存 将信息复制到更快的存储系统访问时，请首先检查缓存，如果在：直接使用不在：从上层存储系统获取，并将副本保留在缓存中使用缓存寄存器为主存储器提供高速缓存指令缓存和数据缓存主内存可以视为辅助存储的快速缓存 必须将程序（从磁盘）带入内存并放置在进程中才能运行主存储器和寄存器仅是存储CPU可以直接访问一个CPU时钟（或更少）中的Registeracce">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第八章 内存管理">
-<meta property="og:url" content="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:url" content="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="blog">
 <meta property="og:description" content="第八章 内存管理8.1背景8.1.1基本硬件 高速缓存 将信息复制到更快的存储系统访问时，请首先检查缓存，如果在：直接使用不在：从上层存储系统获取，并将副本保留在缓存中使用缓存寄存器为主存储器提供高速缓存指令缓存和数据缓存主内存可以视为辅助存储的快速缓存 必须将程序（从磁盘）带入内存并放置在进程中才能运行主存储器和寄存器仅是存储CPU可以直接访问一个CPU时钟（或更少）中的Registeracce">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201112202116682.png">
-<meta property="og:image" content="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201112202128762.png">
-<meta property="og:image" content="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201112203018298.png">
-<meta property="og:image" content="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201112230619494.png">
 <meta property="article:published_time" content="2020-11-06T03:12:42.000Z">
-<meta property="article:modified_time" content="2020-11-12T15:23:57.408Z">
+<meta property="article:modified_time" content="2020-11-12T15:17:26.537Z">
 <meta property="article:author" content="eric-scarlet">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201112202116682.png">
 
 
-<link rel="canonical" href="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+<link rel="canonical" href="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
 
 
 <script class="page-configurations">
@@ -275,7 +270,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -306,7 +301,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-12 23:23:57" itemprop="dateModified" datetime="2020-11-12T23:23:57+08:00">2020-11-12</time>
+        <time title="修改时间：2020-11-12 23:17:26" itemprop="dateModified" datetime="2020-11-12T23:17:26+08:00">2020-11-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -365,7 +360,7 @@
 <li><p>用户程序的多步骤处理：</p>
 </li>
 </ul>
-<p><img src="/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201112202116682.png" alt="image-20201112202116682"></p>
+<p>![image-20201112202116682](第八章 内存管理/image-20201112202116682.png)</p>
 <h3 id="8-1-3逻辑地址空间与物理地址空间"><a href="#8-1-3逻辑地址空间与物理地址空间" class="headerlink" title="8.1.3逻辑地址空间与物理地址空间"></a>8.1.3逻辑地址空间与物理地址空间</h3><ul>
 <li><p>CPU生成的地址通常称为逻辑地址，而内存单元看到的地址（即加载到内存地址寄存器的地址）通常称为物理地址。</p>
 </li>
@@ -376,7 +371,7 @@
 <li><p>使用重定位寄存器的动态重定位：</p>
 </li>
 </ul>
-<p><img src="/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201112202128762.png" alt="image-20201112202128762"></p>
+<p>![image-20201112202128762](第八章 内存管理/image-20201112202128762.png)</p>
 <h3 id="8-1-4动态加载"><a href="#8-1-4动态加载" class="headerlink" title="8.1.4动态加载"></a>8.1.4动态加载</h3><p>加载的三种方式：</p>
 <ul>
 <li>绝对加载方式</li>
@@ -433,7 +428,7 @@
 </li>
 </ul>
 <h3 id="8-1-5动态联建与共享库"><a href="#8-1-5动态联建与共享库" class="headerlink" title="8.1.5动态联建与共享库"></a>8.1.5动态联建与共享库</h3><p>链接：</p>
-<p><img src="/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201112203018298.png" alt="image-20201112203018298"></p>
+<p>![image-20201112203018298](第八章 内存管理/image-20201112203018298.png)</p>
 <p>根据链接的时间可以分为：</p>
 <ul>
 <li>静态链接方式</li>
@@ -479,7 +474,7 @@
 <h2 id="8-2交换"><a href="#8-2交换" class="headerlink" title="8.2交换"></a>8.2交换</h2><ul>
 <li>进程必须在内存中以便执行。不过，内存可以暂时从<strong>内存</strong>交换到<strong>备份存储</strong>，当再次执行时再调回到内存中。交换有可能让所有进程的总的物理地址空间超过真实系统的物理地址空间，从而增加了系统的<strong>多道程序程度</strong>。</li>
 </ul>
-<p><img src="/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201112230619494.png" alt="image-20201112230619494"></p>
+<p>![image-20201112230619494](第八章 内存管理/image-20201112230619494.png)</p>
 <h3 id="8-2-1标准交换"><a href="#8-2-1标准交换" class="headerlink" title="8.2.1标准交换"></a>8.2.1标准交换</h3><ul>
 <li><p>交换要求：<br>对换空间<br> 换出（或滚出）<br> 换入（或滚入）</p>
 </li>
@@ -524,11 +519,14 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="prev" title="第八章 内存管理">
-                  <i class="fa fa-chevron-left"></i> 第八章 内存管理
+                <a href="/2020/11/02/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E5%98%BF%E5%98%BF/" rel="prev" title="欸嘿">
+                  <i class="fa fa-chevron-left"></i> 欸嘿
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2020/11/06/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="next" title="第八章 内存管理">
+                  第八章 内存管理 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
