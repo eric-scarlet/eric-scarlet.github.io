@@ -21,7 +21,9 @@
   <entry>
     <title>内存管理</title>
     <url>/2020/11/06/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="第八章-内存管理"><a href="#第八章-内存管理" class="headerlink" title="第八章 内存管理"></a>第八章 内存管理</h1><h2 id="8-1背景"><a href="#8-1背景" class="headerlink" title="8.1背景"></a>8.1背景</h2><h3 id="8-1-1基本硬件"><a href="#8-1-1基本硬件" class="headerlink" title="8.1.1基本硬件"></a>8.1.1基本硬件</h3><ul>
+    <content><![CDATA[<h1 id="第八章-内存管理"><a href="#第八章-内存管理" class="headerlink" title="第八章 内存管理"></a>第八章 内存管理</h1><h2 id="8-1背景"><a href="#8-1背景" class="headerlink" title="8.1背景"></a>8.1背景</h2><h3 id="8-1-1基本硬件"><a href="#8-1-1基本硬件" class="headerlink" title="8.1.1基本硬件"></a>8.1.1基本硬件</h3><a id="more"></a>
+
+<ul>
 <li><p>高速缓存</p>
 <p>将信息复制到更快的存储系统<br>访问时，请首先检查缓存，<br>如果在：直接使用<br>不在：从上层存储系统获取，并将副本保留在缓存中<br>使用缓存<br>寄存器为主存储器提供高速缓存<br>指令缓存和数据缓存<br>主内存可以视为辅助存储的快速缓存</p>
 <p>必须将程序（从磁盘）带入内存并放置在进程中才能运行<br>主存储器和寄存器仅是存储CPU可以直接访问<br>一个CPU时钟（或更少）中的Registeraccess<br>主内存可能需要很多周期（几个CPU时钟）<br>缓存在主内存和CPU寄存器之间进行<br>内存的保护需要保证正确的操作</p>
@@ -35,9 +37,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="8-1-2地址绑定"><a href="#8-1-2地址绑定" class="headerlink" title="8.1.2地址绑定"></a>8.1.2地址绑定</h3><a id="more"></a>
-
-<ul>
+<h3 id="8-1-2地址绑定"><a href="#8-1-2地址绑定" class="headerlink" title="8.1.2地址绑定"></a>8.1.2地址绑定</h3><ul>
 <li><p>将指令和数据绑定到内存</p>
 </li>
 <li><p>符号地址到可重定位地址</p>
