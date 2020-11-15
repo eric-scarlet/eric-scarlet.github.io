@@ -35,7 +35,9 @@
 </ul>
 </li>
 </ul>
-<h3 id="8-1-2地址绑定"><a href="#8-1-2地址绑定" class="headerlink" title="8.1.2地址绑定"></a>8.1.2地址绑定</h3><ul>
+<h3 id="8-1-2地址绑定"><a href="#8-1-2地址绑定" class="headerlink" title="8.1.2地址绑定"></a>8.1.2地址绑定</h3><a id="more"></a>
+
+<ul>
 <li><p>将指令和数据绑定到内存</p>
 </li>
 <li><p>符号地址到可重定位地址</p>
