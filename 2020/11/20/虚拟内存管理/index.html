@@ -24,29 +24,62 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="blog">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="第九章 虚拟内存管理9.1背景 虚拟内存将用户逻辑内存与物理内存分开，虚拟内存使得编程更容易  虚拟地址空间就是进程如何在内存中存放的逻辑，通常进程从某一逻辑地址开始，连续存放：     根据第八章所述，物理地址可以按帧来组织，并且分配给进程的物理帧也可以不连续。从而需要内存管理单元（MMU）将逻辑页映射到内存的物理页帧。  虚拟内存大于物理内存的图例：  虚拟存储器的特征 多次性：最重要的特征一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟内存管理">
+<meta property="og:url" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="blog">
+<meta property="og:description" content="第九章 虚拟内存管理9.1背景 虚拟内存将用户逻辑内存与物理内存分开，虚拟内存使得编程更容易  虚拟地址空间就是进程如何在内存中存放的逻辑，通常进程从某一逻辑地址开始，连续存放：     根据第八章所述，物理地址可以按帧来组织，并且分配给进程的物理帧也可以不连续。从而需要内存管理单元（MMU）将逻辑页映射到内存的物理页帧。  虚拟内存大于物理内存的图例：  虚拟存储器的特征 多次性：最重要的特征一">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201120204337532.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201120204540568.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201120210259800.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121134918903.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121140141132.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121140306794.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121141402897.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121144049828.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121144058267.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121160704219.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121161304859.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121162716728.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121162727420.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121163336874.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121163442167.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121163449651.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121163711889.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121165125824.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121165331407.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121165402585.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201121170629101.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201122110555185.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201122113234216.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201122115629343.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201122145251540.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201122145733309.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201122150151647.png">
+<meta property="og:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201122151605316.png">
+<meta property="article:published_time" content="2020-11-20T12:37:21.000Z">
+<meta property="article:modified_time" content="2020-11-22T07:17:52.803Z">
 <meta property="article:author" content="eric-scarlet">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/image-20201120204337532.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
 
 
 <script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>blog</title>
+  <title>虚拟内存管理 | blog</title>
   
 
 
@@ -189,7 +222,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -202,6 +235,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">第九章 虚拟内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">9.1背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">虚拟存储器的特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB"><span class="nav-number">1.1.2.</span> <span class="nav-text">共享</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E7%B2%97%E4%B8%BA%E4%B9%A6%E4%B8%8A%EF%BC%9A%EF%BC%88%E4%BB%A5%E4%B8%8B%E5%A4%A7%E9%83%A8%E5%88%86%E4%B8%BA%E4%B9%A6%E4%B8%8A%E4%B8%8EPPT%E7%9B%B8%E7%BB%93%E5%90%88%E5%B9%B6%E5%81%9A%E5%BF%85%E8%A6%81%E4%BF%AE%E6%94%B9%EF%BC%89"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">加粗为书上：（以下大部分为书上与PPT相结合并做必要修改）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PPT%EF%BC%9A"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">PPT：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2%E8%AF%B7%E6%B1%82%E8%B0%83%E9%A1%B5"><span class="nav-number">1.2.</span> <span class="nav-text">9.2请求调页</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-1%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">9.2.1基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E9%A1%B5%E8%A1%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">修改后的页表机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E9%A1%B5%E6%95%85%E9%9A%9C%EF%BC%88%E9%94%99%E8%AF%AF%EF%BC%89"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">缺页故障（错误）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E9%A1%B5%E6%95%85%E9%9A%9C%EF%BC%88%E9%94%99%E8%AF%AF%EF%BC%89%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">缺页故障（错误）处理方式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E7%BF%BB%E8%AF%91"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">地址翻译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%81%A2%E5%A4%8D%E6%89%A7%E8%A1%8C"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">恢复执行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-2%E8%AF%B7%E6%B1%82%E8%B0%83%E9%A1%B5%E7%9A%84%E6%80%A7%E8%83%BD"><span class="nav-number">1.2.2.</span> <span class="nav-text">9.2.2请求调页的性能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">提高性能的方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3%E5%86%99%E6%97%B6%E5%A4%8D%E5%88%B6"><span class="nav-number">1.3.</span> <span class="nav-text">9.3写时复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-4%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2"><span class="nav-number">1.4.</span> <span class="nav-text">9.4页面置换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-1%E5%9F%BA%E6%9C%AC%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2"><span class="nav-number">1.4.1.</span> <span class="nav-text">9.4.1基本页面置换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-2FIFO%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2"><span class="nav-number">1.4.2.</span> <span class="nav-text">9.4.2FIFO页面置换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-3%E6%9C%80%E4%BC%98%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2"><span class="nav-number">1.4.3.</span> <span class="nav-text">9.4.3最优页面置换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-4LRU%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2"><span class="nav-number">1.4.4.</span> <span class="nav-text">9.4.4LRU页面置换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-5%E8%BF%91%E4%BC%BCLRU%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2"><span class="nav-number">1.4.5.</span> <span class="nav-text">9.4.5近似LRU页面置换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-4-5-1%E9%A2%9D%E5%A4%96%E5%BC%95%E7%94%A8%E4%BD%8D%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">9.4.5.1额外引用位算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-4-5-2%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%9C%BA%E4%BC%9A%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">9.4.5.2第二次机会算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-4-5-3%E5%A2%9E%E5%BC%BA%E5%9E%8B%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%9C%BA%E4%BC%9A%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">9.4.5.3增强型第二次机会算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-6%E5%9F%BA%E4%BA%8E%E8%AE%A1%E6%95%B0%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2"><span class="nav-number">1.4.6.</span> <span class="nav-text">9.4.6基于计数的页面置换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-4-7%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%86%B2%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">9.4.7页面缓冲算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-4-8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%8E%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2"><span class="nav-number">1.4.6.2.</span> <span class="nav-text">9.4.8应用程序与页面置换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5%E5%B8%A7%E5%88%86%E9%85%8D"><span class="nav-number">1.5.</span> <span class="nav-text">9.5帧分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-5-1%E5%B8%A7%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0"><span class="nav-number">1.5.1.</span> <span class="nav-text">9.5.1帧的最小数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-5-2%E5%88%86%E9%85%8D%E7%AE%97%E6%B3%95"><span class="nav-number">1.5.2.</span> <span class="nav-text">9.5.2分配算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E5%88%86%E9%85%8D"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">平均分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%94%E4%BE%8B%E5%88%86%E9%85%8D"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">比例分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E5%88%86%E9%85%8D"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">优先级分配</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-5-3%E5%85%A8%E5%B1%80%E5%88%86%E9%85%8D%E4%B8%8E%E5%B1%80%E9%83%A8%E5%88%86%E9%85%8D"><span class="nav-number">1.5.3.</span> <span class="nav-text">9.5.3全局分配与局部分配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-6%E7%B3%BB%E7%BB%9F%E6%8A%96%E5%8A%A8"><span class="nav-number">1.6.</span> <span class="nav-text">9.6系统抖动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-1%E7%B3%BB%E7%BB%9F%E6%8A%96%E5%8A%A8%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.6.1.</span> <span class="nav-text">9.6.1系统抖动的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-2%E5%B7%A5%E4%BD%9C%E9%9B%86%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.6.2.</span> <span class="nav-text">9.6.2工作集模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-3%E7%BC%BA%E9%A1%B5%E9%94%99%E8%AF%AF%E9%A2%91%E7%8E%87"><span class="nav-number">1.6.3.</span> <span class="nav-text">9.6.3缺页错误频率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-8%E5%88%86%E9%85%8D%E5%86%85%E6%A0%B8%E5%86%85%E5%AD%98"><span class="nav-number">1.7.</span> <span class="nav-text">9.8分配内核内存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-8-1%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.7.1.</span> <span class="nav-text">9.8.1伙伴系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-8-2slab%E5%88%86%E9%85%8D%E5%99%A8"><span class="nav-number">1.7.2.</span> <span class="nav-text">9.8.2slab分配器</span></a></li></ol></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -252,11 +286,12 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
       
 
       
-    
+
+  
 
 
 <div class="post-block">
@@ -276,10 +311,9 @@
       <meta itemprop="name" content="blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/20/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">虚拟内存管理</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          虚拟内存管理
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -318,7 +352,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="第九章-虚拟内存管理"><a href="#第九章-虚拟内存管理" class="headerlink" title="第九章 虚拟内存管理"></a>第九章 虚拟内存管理</h1><h2 id="9-1背景"><a href="#9-1背景" class="headerlink" title="9.1背景"></a>9.1背景</h2><ul>
+        <h1 id="第九章-虚拟内存管理"><a href="#第九章-虚拟内存管理" class="headerlink" title="第九章 虚拟内存管理"></a>第九章 虚拟内存管理</h1><h2 id="9-1背景"><a href="#9-1背景" class="headerlink" title="9.1背景"></a>9.1背景</h2><ul>
 <li><p><strong>虚拟内存</strong>将用户逻辑内存与物理内存分开，虚拟内存使得编程更容易</p>
 </li>
 <li><p><strong>虚拟地址空间</strong>就是进程如何在内存中存放的逻辑，通常进程从某一逻辑地址开始，连续存放：</p>
@@ -851,7 +885,6 @@
 <li>好处：没有碎片，快速的存储请求满足</li>
 </ul>
 
-      
     </div>
 
     
@@ -859,182 +892,24 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/06/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="eric-scarlet">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/06/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">内存管理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-06 11:12:42" itemprop="dateCreated datePublished" datetime="2020-11-06T11:12:42+08:00">2020-11-06</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-20 20:38:25" itemprop="dateModified" datetime="2020-11-20T20:38:25+08:00">2020-11-20</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="第八章-内存管理"><a href="#第八章-内存管理" class="headerlink" title="第八章 内存管理"></a>第八章 内存管理</h1><h2 id="8-1背景"><a href="#8-1背景" class="headerlink" title="8.1背景"></a>8.1背景</h2><h3 id="8-1-1基本硬件"><a href="#8-1-1基本硬件" class="headerlink" title="8.1.1基本硬件"></a>8.1.1基本硬件</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/06/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/06/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="prev" title="内存管理">
+                  <i class="fa fa-chevron-left"></i> 内存管理
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
 
 
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/02/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="eric-scarlet">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/02/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-02 19:46:07" itemprop="dateCreated datePublished" datetime="2020-11-02T19:46:07+08:00">2020-11-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-  
 
 
 
