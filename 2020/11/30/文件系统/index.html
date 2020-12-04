@@ -32,8 +32,22 @@
 <meta property="og:description" content="第十章 文件系统10.1文件概念10.1.1文件属性文件的属性因操作系统而异，但通常包括：  名称：符号文件名是以人类可读形式来保存的唯一信息。 标识符：这种唯一标记（通常为数字）标识文件系统的文件；它是文件的非人类可读的名称。 类型：支持不同类型文件的系统需要这种信息。 位置：该信息为指向设备与设备上文件位置的指针。 尺寸：该属性包括文件的当前大小（以字节、字或块为单位 ）以及可能允许的最大尺寸">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201130083735047.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204095435008.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204100904325.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204101921035.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204102908265.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204103150754.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204103736677.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204104415132.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204104452788.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204104517963.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204104857734.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204105848435.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204110135045.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204110705454.png">
+<meta property="og:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204110938967.png">
 <meta property="article:published_time" content="2020-11-30T00:09:35.000Z">
-<meta property="article:modified_time" content="2020-11-30T00:40:12.869Z">
+<meta property="article:modified_time" content="2020-12-04T03:10:50.697Z">
 <meta property="article:author" content="eric-scarlet">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201130083735047.png">
@@ -208,7 +222,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">第十章 文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1%E6%96%87%E4%BB%B6%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">10.1文件概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-1%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.1.</span> <span class="nav-text">10.1.1文件属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-2%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.2.</span> <span class="nav-text">10.1.2文件操作</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">第十章 文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1%E6%96%87%E4%BB%B6%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">10.1文件概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-1%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.1.</span> <span class="nav-text">10.1.1文件属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-2%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.2.</span> <span class="nav-text">10.1.2文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E5%92%8C%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E8%A1%A8"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">打开文件和打开文件表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E9%94%81"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">文件锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E6%88%96%E5%BB%BA%E8%AE%AE%E6%96%87%E4%BB%B6%E9%94%81%E5%AE%9A%E6%9C%BA%E5%88%B6"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">强制或建议文件锁定机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-3%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.3.</span> <span class="nav-text">10.1.3文件类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-4%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.4.</span> <span class="nav-text">10.1.4文件结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%EF%BC%88%E9%80%BB%E8%BE%91%E4%B8%8A%EF%BC%89"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">文件结构（逻辑上）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">系统支持的文件结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-5%E5%86%85%E9%83%A8%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.5.</span> <span class="nav-text">10.1.5内部文件结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">10.2访问方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-1%E9%A1%BA%E5%BA%8F%E8%AE%BF%E9%97%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">10.2.1顺序访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-2%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE"><span class="nav-number">1.2.2.</span> <span class="nav-text">10.2.2直接访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-3%E5%85%B6%E4%BB%96%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95%EF%BC%88%E7%B4%A2%E5%BC%95%E8%AE%BF%E9%97%AE%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">10.2.3其他访问方法（索引访问方式）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3%E7%9B%AE%E5%BD%95%E4%B8%8E%E7%A3%81%E7%9B%98%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">10.3目录与磁盘结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-1%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.1.</span> <span class="nav-text">10.3.1存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-2%E7%9B%AE%E5%BD%95%E6%A6%82%E8%BF%B0"><span class="nav-number">1.3.2.</span> <span class="nav-text">10.3.2目录概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-3%E5%8D%95%E7%BA%A7%E7%9B%AE%E5%BD%95"><span class="nav-number">1.3.3.</span> <span class="nav-text">10.3.3单级目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-4%E4%B8%A4%E7%BA%A7%E7%9B%AE%E5%BD%95"><span class="nav-number">1.3.4.</span> <span class="nav-text">10.3.4两级目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-5%E6%A0%91%E5%BD%A2%E7%9B%AE%E5%BD%95"><span class="nav-number">1.3.5.</span> <span class="nav-text">10.3.5树形目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-6%E6%97%A0%E7%8E%AF%E5%9B%BE%E7%9B%AE%E5%BD%95"><span class="nav-number">1.3.6.</span> <span class="nav-text">10.3.6无环图目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-7%E9%80%9A%E7%94%A8%E5%9B%BE%E7%9B%AE%E5%BD%95"><span class="nav-number">1.3.7.</span> <span class="nav-text">10.3.7通用图目录</span></a></li></ol></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -224,14 +238,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -295,10 +309,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-30 08:09:35 / 修改时间：08:40:12" itemprop="dateCreated datePublished" datetime="2020-11-30T08:09:35+08:00">2020-11-30</time>
+      <time title="创建时间：2020-11-30 08:09:35" itemprop="dateCreated datePublished" datetime="2020-11-30T08:09:35+08:00">2020-11-30</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-04 11:10:50" itemprop="dateModified" datetime="2020-12-04T11:10:50+08:00">2020-12-04</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -331,7 +351,273 @@
 </ul>
 <p><strong>所有文件的信息保存在目录结构中，该目录结构也保存在外存上。</strong><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201130083735047.png" alt="image-20201130083735047"></p>
 <p><strong>通常，目录条目由文件的名称及其唯一标识符组成。根据标识符可定位其他文件属性。</strong></p>
-<h3 id="10-1-2文件操作"><a href="#10-1-2文件操作" class="headerlink" title="10.1.2文件操作"></a>10.1.2文件操作</h3>
+<h3 id="10-1-2文件操作"><a href="#10-1-2文件操作" class="headerlink" title="10.1.2文件操作"></a>10.1.2文件操作</h3><p><strong>文件是一种抽象的数据类型。 操作系统提供了6个基本的系统调用：</strong></p>
+<ul>
+<li><p>创建：分配空间+创建目录条目</p>
+</li>
+<li><p>写：写指针</p>
+</li>
+<li><p>读取：读取指针</p>
+</li>
+<li><p>重新定位文件：也称为查找</p>
+</li>
+<li><p>删除：释放空间+擦除目录项</p>
+</li>
+<li><p>截断：文件len = 0; 释放空间； 所有其他属性保持不变</p>
+</li>
+<li><p>其他：<br>对于文件：追加，重命名<br>对于文件属性：chown，chmod<br>对于目录和目录条目：<br>打开（Fi）-在磁盘上的目录结构中搜索条目Fi，<br>并将条目内容移至内存<br>关闭（Fi）-将内存中条目Fi的内容移动到磁盘上的目录结构</p>
+</li>
+</ul>
+<h4 id="打开文件和打开文件表"><a href="#打开文件和打开文件表" class="headerlink" title="打开文件和打开文件表"></a>打开文件和打开文件表</h4><p>打开文件表，OFT：包含所有打开文件的信息的小表<br>多个进程可能会同时打开同一文件<br>⇒2级：每个进程表和一个系统范围表，具有与进程无关的信息</p>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204095435008.png" alt="image-20201204095435008"></p>
+<p>每次打开文件都有如下关联信息：</p>
+<ul>
+<li>文件指针：指向上次读/写位置的指针，与进程有关</li>
+<li>文件打开计数：跟踪打开和关闭的次数–允许在最后一个进程关闭它时从打开文件表中删除该条目</li>
+<li>文件的磁盘位置：在磁盘上找到文件所需的信息，始终保存在内存中</li>
+<li>访问权限：每个进程的访问方式信息</li>
+</ul>
+<h4 id="文件锁"><a href="#文件锁" class="headerlink" title="文件锁"></a>文件锁</h4><p><strong>有的操作系统提供功能，用于锁定打开的文件（或文件的部分）</strong><br><strong>文件锁允许一个进程锁定文件并阻止其他进程访问该文件</strong><br>功能类似于读者-写者锁<br>共享锁（共享锁）类似于读者锁-多个进程可以同时获取<br>独占锁（专用锁）类似于写者锁<br>依赖于操作系统或文件系统</p>
+<h4 id="强制或建议文件锁定机制"><a href="#强制或建议文件锁定机制" class="headerlink" title="强制或建议文件锁定机制"></a>强制或建议文件锁定机制</h4><p>1.强制：例如Windows操作系统</p>
+<ul>
+<li><strong>一旦进程获取独占锁，操作系统就阻止任何其他进程访问锁定的文件</strong></li>
+<li><strong>操作系统确保锁定完整性</strong></li>
+</ul>
+<p>2.建议：例如UNIX</p>
+<ul>
+<li>进程可以找到锁的状态并决定要做什么</li>
+<li><strong>软件开发人员应确保适当地获取和释放锁</strong></li>
+</ul>
+<h3 id="10-1-3文件类型"><a href="#10-1-3文件类型" class="headerlink" title="10.1.3文件类型"></a>10.1.3文件类型</h3><p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204100904325.png" alt="image-20201204100904325"></p>
+<h3 id="10-1-4文件结构"><a href="#10-1-4文件结构" class="headerlink" title="10.1.4文件结构"></a>10.1.4文件结构</h3><p><strong>文件类型也可用于指示文件的内部结构</strong></p>
+<h4 id="文件结构（逻辑上）"><a href="#文件结构（逻辑上）" class="headerlink" title="文件结构（逻辑上）"></a><strong>文件结构（逻辑上）</strong></h4><ul>
+<li><p>字，字节的无序</p>
+</li>
+<li><p>简单的记录结构</p>
+<ul>
+<li>线数</li>
+<li>固定长度</li>
+<li>可变长度</li>
+</ul>
+</li>
+<li><p>复杂结构</p>
+<ul>
+<li>格式化文件</li>
+<li>可重载文件</li>
+</ul>
+</li>
+<li><p>通过插入适当的控制字符，可以用第一种方法模拟最后两个</p>
+</li>
+</ul>
+<h4 id="系统支持的文件结构"><a href="#系统支持的文件结构" class="headerlink" title="系统支持的文件结构"></a><strong>系统支持的文件结构</strong></h4><ul>
+<li>大多数现代OS直接支持最少数量的文件结构<ul>
+<li>示例：UNIX将每个文件视为8位字节的序列</li>
+</ul>
+</li>
+<li>好处<ul>
+<li>应用程序具有更大的灵活性</li>
+<li>简化操作系统</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-1-5内部文件结构"><a href="#10-1-5内部文件结构" class="headerlink" title="10.1.5内部文件结构"></a>10.1.5内部文件结构</h3><ul>
+<li>如何在文件中找到偏移量？<ul>
+<li>逻辑文件（记录）（长度不同）<br>→物理块（固定大小）</li>
+</ul>
+</li>
+<li>解决方案：打包-将许多逻辑记录打包到物理块中。<ul>
+<li>打包和解包：在逻辑记录和物理块之间转换</li>
+<li>内部碎片会产生</li>
+</ul>
+</li>
+</ul>
+<h2 id="10-2访问方法"><a href="#10-2访问方法" class="headerlink" title="10.2访问方法"></a>10.2访问方法</h2><p>文件存储信息。 使用时，必须访问此信息并将其读入计算机内存<br>从用户的逻辑角度来看，可以通过几种方式访问文件中的信息</p>
+<h3 id="10-2-1顺序访问"><a href="#10-2-1顺序访问" class="headerlink" title="10.2.1顺序访问"></a>10.2.1顺序访问</h3><p><strong>顺序访问方式</strong>：最简单的访问方法。 文件中的信息按顺序处理，一个记录一个接一个。</p>
+<ul>
+<li>这是最常见的访问模式<br>例如：编辑器，编译器</li>
+<li>文件的磁带模型</li>
+</ul>
+<p><strong>文件操作及其对文件指针的影响</strong></p>
+<ul>
+<li>读/写下一个</li>
+<li>重启</li>
+<li>后退/前进 n</li>
+</ul>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204101921035.png" alt="image-20201204101921035"></p>
+<h3 id="10-2-2直接访问"><a href="#10-2-2直接访问" class="headerlink" title="10.2.2直接访问"></a>10.2.2直接访问</h3><p><strong>这里，文件由固定长度的逻辑记录组成，以允许程序按任意顺序进行快速读取和写入记录。直接访问方法基于文件的磁盘模型，因为磁盘允许对任何文件块的随机访问。对于直接访问，文件可以作为块或记录的编号序列。对于直接访问文件的读取或写入的顺序没有限制</strong></p>
+<p><strong>直接访问方式</strong>：文件中的信息没有特别的顺序处理。</p>
+<ul>
+<li>文件由固定长度的逻辑记录的编号序列组成<ul>
+<li>文件的磁盘模型，允许随机访问，立即访问</li>
+<li>例如：数据库或航空公司预订系统</li>
+</ul>
+</li>
+<li>通过提供相对记录号可以快速移动到任何记录位置<ul>
+<li>读n和写n<br>文件指针 =  L * n，0≤n≤N，其中N是最后一个记录号，L是每个记录的固定长度。</li>
+<li>=位置n和下一个读/写</li>
+</ul>
+</li>
+</ul>
+<p><strong>直接访问文件的顺序访问模拟：</strong></p>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204102908265.png" alt="image-20201204102908265"></p>
+<h3 id="10-2-3其他访问方法（索引访问方式）"><a href="#10-2-3其他访问方法（索引访问方式）" class="headerlink" title="10.2.3其他访问方法（索引访问方式）"></a>10.2.3其他访问方法（索引访问方式）</h3><ul>
+<li><p><strong>为了缩短搜索时间并减少I / O</strong></p>
+</li>
+<li><p>为该文件创建一个索引文件，其中包含指向各种记录的指针</p>
+</li>
+<li><p>首先搜索索引文件，然后使用指针直接访问该文件并找到所需的记录</p>
+</li>
+<li><p>对于大文件，索引文件本身可能会变得太大而无法保存在内存中⇒多级索引表</p>
+</li>
+</ul>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204103150754.png" alt="image-20201204103150754"></p>
+<h2 id="10-3目录与磁盘结构"><a href="#10-3目录与磁盘结构" class="headerlink" title="10.3目录与磁盘结构"></a>10.3目录与磁盘结构</h2><p><strong>分区（迷你磁盘，卷）</strong></p>
+<ul>
+<li>一个磁盘</li>
+<li>磁盘的一部分：在一个磁盘上提供单独的逻辑空间</li>
+<li>N个磁盘：将多个磁盘分组为一个逻辑空间</li>
+</ul>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204103736677.png" alt="image-20201204103736677"></p>
+<p><strong>分区 = 文件 + 目录</strong></p>
+<ul>
+<li>目录：保存该分区中所有文件的文件信息（名称，位置，大小，类型…）</li>
+</ul>
+<h3 id="10-3-1存储结构"><a href="#10-3-1存储结构" class="headerlink" title="10.3.1存储结构"></a>10.3.1存储结构</h3><p>正如刚才所述.jpg</p>
+<p>专用文件系统</p>
+<ul>
+<li>临时文件系统</li>
+<li>“虚拟”文件系统</li>
+<li>维护合同信息的虚拟文件系统</li>
+<li>环回文件系统</li>
+<li>虚拟文件系统</li>
+<li>通用文件系统</li>
+</ul>
+<h3 id="10-3-2目录概述"><a href="#10-3-2目录概述" class="headerlink" title="10.3.2目录概述"></a>10.3.2目录概述</h3><p><strong>目录：包含有关所有文件信息的节点的集合。</strong></p>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204104415132.png" alt="image-20201204104415132"></p>
+<p><strong>目录 + 文件：全部驻留在磁盘上</strong><br><strong>这两个结构的备份保存在磁带上</strong></p>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204104452788.png" alt="image-20201204104452788"></p>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204104517963.png" alt="image-20201204104517963"></p>
+<p><strong>组织目录（逻辑上）以获取</strong></p>
+<ul>
+<li>效率——快速查找文件</li>
+<li>命名——方便用户<ul>
+<li>两个用户可以为不同的文件使用相同的名称</li>
+<li>同一文件可以具有多个不同的名称</li>
+</ul>
+</li>
+<li>分组——人们的惯例<ul>
+<li>按属性对文件进行逻辑分组（例如，所有Java程序，所有游戏等）</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-3-3单级目录"><a href="#10-3-3单级目录" class="headerlink" title="10.3.3单级目录"></a>10.3.3单级目录</h3><p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204104857734.png" alt="image-20201204104857734"></p>
+<ul>
+<li>所有用户的一个目录</li>
+<li>易于支持和理解。</li>
+<li>但是，如果有大量文件和/或用户……<ul>
+<li>极低的搜索速度，O（N）</li>
+<li>命名问题<ul>
+<li>命名空间小和名称冲突</li>
+<li>MS-DOS：11个字节的文件名</li>
+<li>UNIX：256个字节</li>
+</ul>
+</li>
+<li>保护VS共享</li>
+<li>分组问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-3-4两级目录"><a href="#10-3-4两级目录" class="headerlink" title="10.3.4两级目录"></a>10.3.4两级目录</h3><p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204105848435.png" alt="image-20201204105848435"></p>
+<ul>
+<li><p>对于两级目录结构，每个用户都有自己的用户文件目录</p>
+</li>
+<li><p>用户文件目录：UFD</p>
+<ul>
+<li>每个条目都拥有用户文件的信息</li>
+</ul>
+</li>
+<li><p>主文件目录：MFD</p>
+<ul>
+<li>每个条目包含：（1）用户名，（2）指向其UFD的指针</li>
+</ul>
+</li>
+<li><p>可以为不同的用户使用相同的文件名</p>
+</li>
+<li><p>高效搜索</p>
+</li>
+<li><p>没有分组能力</p>
+</li>
+<li><p>易于管理</p>
+<ul>
+<li>添加/删除用户</li>
+</ul>
+</li>
+<li><p>安全VS。 分享中</p>
+<ul>
+<li>MFD，系统管理员</li>
+<li>UFD，与其他用户隔离</li>
+<li>目录树和路径名</li>
+<li>如何分享？ 例如。 系统范围的文件（数据，程序等）<ul>
+<li>为每个用户复制</li>
+<li>搜索路径：一个特殊的用户目录定义成包含系统文件，每当需要加载给定名称的文件时，操作系统首先搜索本地UFD，如果找到则使用，如果没找到，系统就自动搜索包含系统文件的特殊用户目录。用于搜索给定名称的文件所用的目录序列称为<strong>搜索路径</strong>。</li>
+<li>对于给定的命令名称，搜索路径可以扩展到包含需要搜索的无限的目录列表。这种方法是UNIX和Windows最为常用的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-3-5树形目录"><a href="#10-3-5树形目录" class="headerlink" title="10.3.5树形目录"></a>10.3.5树形目录</h3><p><strong>根目录+目录+子目录</strong></p>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204110135045.png" alt="image-20201204110135045"></p>
+<p><strong>常规文件 VS. 子目录</strong><br>将子目录视为另一个文件<br>使用目录条目中的特殊位来区分文件（0）和子目录（1）</p>
+<p><strong>当前目录（工作/搜索目录）</strong><br>在当前目录中创建一个新文件。<br>初始当前目录</p>
+<p><strong>绝对与相对路径名</strong><br>如果当前目录是root / spell / mail，则相对路径名prt / first<br>prt / first与绝对路径名root / spell / mail / prt / first所指的文件相同</p>
+<p><strong>操作</strong></p>
+<ul>
+<li>更改当前目录：cd / spell / mail / prog</li>
+<li>删除文件：rm &lt;文件名&gt;</li>
+<li>列出目录：ls</li>
+<li>创建一个新目录：mkdir <dir-name><ul>
+<li>示例：如果在当前目录/ mail中</li>
+</ul>
+</dir-name></li>
+<li>删除目录<ul>
+<li>MS-DOS（仅空目录）VS。 UNIX（可选）</li>
+</ul>
+</li>
+</ul>
+<p><strong>高效搜索</strong><br><strong>分组能力</strong><br><strong>树形结构</strong><br><strong>禁止（阻止）共享文件和目录。</strong></p>
+<h3 id="10-3-6无环图目录"><a href="#10-3-6无环图目录" class="headerlink" title="10.3.6无环图目录"></a>10.3.6无环图目录</h3><p>具有共享子目录和文件，没有环<br>同一文件或目录可能位于两个不同的目录中，具有两个不同的名称（别名）</p>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204110705454.png" alt="image-20201204110705454"></p>
+<p><strong>执行：</strong></p>
+<ul>
+<li>符号链接（符号链接）<ul>
+<li>特殊的新目录条目（链接）</li>
+<li>该文件的内容是真实文件/目录的路径名</li>
+</ul>
+</li>
+<li>复制目录条目<ul>
+<li>难以保持一致性</li>
+</ul>
+</li>
+</ul>
+<p><strong>遍历问题</strong><br>名称不同，实际只有一个文件<br>遍历不止一次</p>
+<p><strong>删除问题</strong><br>如果直接删除列表⇒悬空指针<br>或保留文件，直到删除对该文件的所有引用<br>解决方案：<br>-文件参考清单<br>-参考计数：UNIX中的硬链接（hard link）<br>如何确保没有周期？</p>
+<h3 id="10-3-7通用图目录"><a href="#10-3-7通用图目录" class="headerlink" title="10.3.7通用图目录"></a>10.3.7通用图目录</h3><p>允许环存在于目录中</p>
+<p><img src="/2020/11/30/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/image-20201204110938967.png" alt="image-20201204110938967"></p>
+<p><strong>遍历问题和删除问题仍然存在，甚至更加复杂</strong></p>
+<ul>
+<li>无限循环<ul>
+<li>限制搜索时目录的访问号</li>
+</ul>
+</li>
+<li>垃圾和垃圾收集</li>
+</ul>
+<p><strong>我们如何保证没有周期？</strong></p>
+<ul>
+<li>只允许链接到文件而不是子目录</li>
+<li>每次添加新链接时，请使用周期检测算法确定是否正常</li>
+</ul>
+
     </div>
 
     
